@@ -6,12 +6,21 @@
 ##############################################################################
 # Imports
 
+import re 
+
 # Body
+def read_file():
+	file_name = input("Please enter the file name with extention: ")
+	data = open(file_name, "r")
+	for line in data:
+		if len(line.strip()) > 20:
+			print (line, end = "")
+
 
 
 ##############################################################################
 def main():
-    pass  # Call your functions here.
+    read_file()  # Call your functions here.
 
 if __name__ == '__main__':
     main()

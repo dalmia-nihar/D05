@@ -18,9 +18,9 @@ def infinite_stairway_room(count=0):
         if (count > 0):
             print("but you're not happy about it")
         infinite_stairway_room(count + 1)
-    # option 2 == ?????
+    option_2 = "go back"
     if next == option_2:
-        pass
+        main()
 
 
 def gold_room():
@@ -43,20 +43,19 @@ def bear_room():
     print("There is a bear here.")
     print("The bear has a bunch of honey.")
     print("The fat bear is in front of another door.")
-    print("How are you going to move the bear?")
     bear_moved = False
-
+    
     while True:
         next = input("> ")
-
-        if next == "take honey":
+        
+        if next == "take" or next == "honey":
             dead("The bear looks at you then slaps your face off.")
-        elif next == "taunt bear" and not bear_moved:
+        elif next == "taunt bear" or next == "taunt" and not bear_moved:
             print("The bear has moved from the door. You can go through it now.")
             bear_moved = True
-        elif next == "taunt bear" and bear_moved:
+        elif next == "taunt bear" or next == "taunt" and bear_moved:
             dead("The bear gets pissed off and chews your leg off.")
-        elif next == "open door" and bear_moved:
+        elif next == "open" or next == "door" and bear_moved:
             gold_room()
         else:
             print("I got no idea what that means.")
@@ -70,7 +69,7 @@ def cthulhu_room():
     next = input("> ")
 
     if "flee" in next:
-        start()
+        main()
     elif "head" in next:
         dead("Well that was tasty!")
     else:
@@ -83,11 +82,13 @@ def dead(why):
 
 
 ############################################################################
-def start():
+def main():
     # START the TextAdventure game
-    print("You are in a dark room.")
-    print("There is a door to your right and left.")
-    print("Which one do you take?")
+    print("Welcome, please enter your name.. ")
+    user_name = input("> ")
+    print(user_name + " is in a dark room.")
+    print("There is a door to " +  user_name + "'s right, left and straight.")
+    print("Which one does " + user_name +  " take?")
 
     next = input("> ")
 
@@ -95,8 +96,10 @@ def start():
         bear_room()
     elif next == "right":
         cthulhu_room()
+    elif next == "straight":
+        infinite_stairway_room()
     else:
-        dead("You stumble around the room until you starve.")
+        dead(user_name + " stumbles around the room until "+ user_name + "  starves.")
 
 if __name__ == '__main__':
-    start()
+    main()
